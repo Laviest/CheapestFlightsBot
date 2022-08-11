@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from search.constants import BASE_URL
 from selenium.webdriver.support.ui import WebDriverWait
+import re
+
 
 
 class FlightSearcher(webdriver.Chrome):
@@ -69,7 +71,9 @@ class FlightSearcher(webdriver.Chrome):
             all_days = main_class.find_elements(By.CLASS_NAME, 'odf-calendar-day')
 
         for num in range(0, len(all_days)):
-            if all_days[num].get_attribute("textContent") == day:
+            content = all_days[num].get_attribute("textContent")
+            content = re.sub("€.*", "", content)
+            if content == day:
                 all_days[num].click()
                 break
 
@@ -133,5 +137,3 @@ class FlightSearcher(webdriver.Chrome):
     def one_way(self):
         one_way_button = self.find_element(By.XPATH, "/html/body/div[2]/div[1]/div[2]/div[1]/section[1]/div/div[6]/div[2]/div[2]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/label/div/div[1]/span")
         one_way_button.click()
-
-
