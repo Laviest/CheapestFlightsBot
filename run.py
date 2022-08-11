@@ -56,5 +56,3 @@ with FlightSearcher() as bot:
             bot.cheapest()
         elif the_choice.strip().lower().capitalize() == "Fastest":
             bot.fastest()
-
-    # MTAwNjE5NjgxNTk1MzE1NDA2OA.G4x8za.tqi6hfcvIMGtzJERFOGHHxxU8kQXegsLTB7XOI
